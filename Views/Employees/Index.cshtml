@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CoreMvcEFWebApi.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Employee List</h3>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th><a asp-action="AddOrEdit" class="btn btn-outline-primary"><i class="fa fa-plus-squre"></i>Employee</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.EmployeeID">Edit</a> ||
+                
+                <a asp-action="Delete" asp-route-id="@item.EmployeeID" class="text-danger ml-1"onclick="return confirm('Are you sure to delete this record')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
